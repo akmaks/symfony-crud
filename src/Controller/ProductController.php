@@ -5,14 +5,34 @@ namespace App\Controller;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class ProductController extends AbstractController
 {
-    public function index(ProductRepository $productRepository): JsonResponse
+    private ProductRepository $productRepository;
+
+    public function __construct(ProductRepository $productRepository)
     {
-        return $this->json([
-            'data' => $productRepository->findAll(),
-        ]);
+        $this->productRepository = $productRepository;
+    }
+
+    public function index(): JsonResponse
+    {
+        return $this->json(
+            [
+                'data' => $this->productRepository->findAll(),
+            ]
+        );
+    }
+
+    public function findById(Request $request): JsonResponse
+    {
+        $id = $request->attributes->get('id');
+
+        return $this->json(
+            [
+                'data' => $this->productRepository->find($id),
+            ]
+        );
     }
 }

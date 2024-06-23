@@ -7,3 +7,11 @@ api_product_index:
     path: /api/products
     controller: 'App\Controller\ProductController::index'
     methods: ['GET']
+api_product_find_by_id:
+    path: /api/products/{id}
+    controller: 'App\Controller\ProductController::findById'
+    methods: ['GET']
+app.swagger_ui:
+    path: /api/doc
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
