@@ -1,7 +1,7 @@
 #!/bin/sh
 
 PHPCS_BIN="./vendor/bin/phpcs"
-PHPSTAN="./vendor/bin/phpstan analyse -l 1 --memory-limit=1G --no-progress --configuration phpstan.dis.neon"
+PHPSTAN="./vendor/bin/phpstan analyse -l 1 --memory-limit=1G --no-progress --configuration phpstan.dist.neon"
 PHPMD="./vendor/bin/phpmd"
 
 ALL_FILES=$(git diff --name-only --diff-filter=AM HEAD | grep .php)
@@ -30,7 +30,9 @@ then
 
         echo "[PRE-COMMIT] Checking code smells with phpmd..."
 
-        $PHPMD $ALL_FILES "text rulesets.xml"
+        printf -v command '%s %s' $ALL_FILES " text rulesets.xml"
+
+        $PHPMD $command
 
         if [ $? != 0 ]
         then
