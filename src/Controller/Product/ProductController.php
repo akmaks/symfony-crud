@@ -1,26 +1,24 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Product;
 
-use App\Repository\ProductRepository;
+use App\Service\Product\ProductServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class ProductController extends AbstractController
 {
-    private ProductRepository $productRepository;
-
-    public function __construct(ProductRepository $productRepository)
-    {
-        $this->productRepository = $productRepository;
+    public function __construct(
+       private ProductServiceInterface $productService
+    ) {
     }
 
     public function index(): JsonResponse
     {
         return $this->json(
             [
-                'data' => $this->productRepository->findAll(),
+                'data' => $this->productService->getList(),
             ]
         );
     }
@@ -31,7 +29,7 @@ class ProductController extends AbstractController
 
         return $this->json(
             [
-                'data' => $this->productRepository->find($id),
+                'data' => $this->productService->getById($id),
             ]
         );
     }
