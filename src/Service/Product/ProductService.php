@@ -9,10 +9,8 @@ use App\Repository\Product\ProductRepositoryInterface;
 
 class ProductService implements ProductServiceInterface
 {
-    public function __construct(
-        private ProductRepositoryInterface $productRepository
-    ) {
-
+    public function __construct(private ProductRepositoryInterface $productRepository)
+    {
     }
 
     /**
