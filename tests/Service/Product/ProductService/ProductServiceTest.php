@@ -4,8 +4,6 @@ namespace App\Tests\Service\Product\ProductService;
 
 use App\Repository\Product\ProductRepositoryInterface;
 use App\Service\Product\ProductService;
-use Faker\Factory;
-use Faker\Generator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
