@@ -12,11 +12,14 @@ up: ## Start app
 	APP_UID=$(shell id -u) APP_GID=$(shell id -g) docker-compose up --build --detach --remove-orphans; \
     $(PHP_BIN) -S localhost:8000 -t public;
 
-phpstan: ## Analyse phpstan
+phpstan: ## Code errors and bugs analyser
 	vendor/bin/phpstan analyse
 
-phpcs: ## Analyse phpcs
+phpcs: ## Code style analyzer
 	./vendor/bin/phpcs
 
-phpcbf: ## Fix phpcbf
+phpcbf: ## Code style fixer
 	./vendor/bin/phpcbf
+
+phpmd: ## Code smells detector
+	./vendor/bin/phpmd ./src text rulesets.xml
