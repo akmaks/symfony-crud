@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 abstract class ProductServiceTest extends TestCase
 {
-    protected MockObject|ProductRepositoryInterface $productRepository;
+    protected MockObject $productRepository;
 
     protected ProductService $productService;
 

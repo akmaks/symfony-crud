@@ -11,7 +11,7 @@ class GetByIdTest extends ProductServiceTest
     /**
      * @dataProvider dataProvider
      */
-    public function testGetById($id, $product): void
+    public function testGetById(int $id, mixed $product): void
     {
         $this->productRepository
             ->expects($this->once())
@@ -25,7 +25,7 @@ class GetByIdTest extends ProductServiceTest
     }
 
     /**
-     * @return array
+     * @return array<array<string,mixed>>
      */
     public function dataProvider(): array
     {

@@ -11,3 +11,6 @@ up: ## Start app
 	@printf "\n   \e[30;42m %s \033[0m\n\n" 'Navigate your browser to ⇒ http://127.0.0.1:8000'
 	APP_UID=$(shell id -u) APP_GID=$(shell id -g) docker-compose up --build --detach --remove-orphans; \
     $(PHP_BIN) -S localhost:8000 -t public;
+
+phpstan: ## Analyse hphstan
+	vendor/bin/phpstan analyse

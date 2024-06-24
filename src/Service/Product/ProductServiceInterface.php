@@ -8,6 +8,9 @@ use App\Entity\Product;
 
 interface ProductServiceInterface
 {
+    /**
+     * @return array<Product>
+     */
     public function getList(): array;
 
     public function getById(int $id): ?Product;

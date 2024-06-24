@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ProductController extends AbstractController
 {
     public function __construct(
-       private ProductServiceInterface $productService
+        private ProductServiceInterface $productService
     ) {
     }
 
@@ -27,7 +27,16 @@ class ProductController extends AbstractController
     {
         $id = $request->attributes->get('id');
 
-        return $this->json(
+        if (empty($id) || !is_int($id)) {
+            return new JsonResponse(
+                [
+                    'error' => 'invalid id param',
+                ],
+                422
+            );
+        }
+
+        return new JsonResponse(
             [
                 'data' => $this->productService->getById($id),
             ]
