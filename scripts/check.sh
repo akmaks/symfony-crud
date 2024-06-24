@@ -1,7 +1,7 @@
 #!/bin/sh
 
 PHPCS_BIN="./vendor/bin/phpcs"
-PHPSTAN="./vendor/bin/phpstan analyse -l 1 --memory-limit=1G --no-progress --configuration phpstan.dist.neon"
+PHPSTAN="./vendor/bin/phpstan analyse --memory-limit=1G --no-progress --configuration phpstan.dist.neon"
 PHPMD="./vendor/bin/phpmd"
 
 ALL_FILES=$(git diff --name-only --diff-filter=AM HEAD | grep .php)
