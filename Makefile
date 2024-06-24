@@ -23,3 +23,6 @@ phpcbf: ## Code style fixer
 
 phpmd: ## Code smells detector
 	./vendor/bin/phpmd ./src text rulesets.xml
+
+add-githooks: ## Add code checker in githook pre-commit
+	git config core.hooksPath .githooks
