@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Service\Product\ProductService;
+namespace App\Tests\Unit\Service\Product\ProductService;
 
 use App\Entity\Product;
 
